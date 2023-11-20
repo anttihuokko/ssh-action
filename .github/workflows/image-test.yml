@@ -13,4 +13,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Docker image
-        uses: docker://ghcr.io/anttihuokko/subsonic:6.1.6
+        uses: docker://ghcr.io/anttihuokko/ssh-action:latest
