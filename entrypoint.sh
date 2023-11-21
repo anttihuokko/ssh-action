@@ -64,5 +64,12 @@ echo "  User $USER" >> $SSH_DIR/config
 
 chmod 600 $SSH_DIR/*
 
-echo Starting to execute ssh command
+
+
+
+echo "Host key: $HOST_KEY"
+
+
+
+echo '--- Starting to execute ssh command ---'
 ssh target $COMMAND
