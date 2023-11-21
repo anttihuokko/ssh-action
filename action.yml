@@ -2,21 +2,30 @@ name: SSH CMD Action
 description: Action to run an single ssh command
 inputs:
   user:
-    description: Test input 1
+    description: SSH user
     required: true
-  input2:
-    description: Test input 2
-    required: false
+  host:
+    description: Target host
+    required: true
+  port:
+    description: Target port
+    default: 22
+  hostkey:
+    description: Public key of the host server
+    required: true
+  userkey:
+    description: Private key of the user
+    required: true
+  command:
+    description: The command to execute
+    required: true
 runs:
-  using: composite
-  steps:
-    - name: Print inputs
-      uses: docker://ghcr.io/anttihuokko/ssh-action:latest
-      with:
-        args: >-
-          --user="deploy"
-          --host="anhu.ddns.net"
-          --port="221"
-          --hostkey="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGUQJw//0pUlU00FTIQ5ailGptgh4813IseZRqjoufO2"
-          --userkey="${{secrets.SSH_PRIVATE_KEY}}"
-          --command="uptime"
+  using: 'docker'
+  image: ghcr.io/anttihuokko/ssh-cmd-action:latest
+  args:
+    - --user=${{ inputs.user }}
+    - --host=${{ inputs.host }}
+    - --port=${{ inputs.port }}
+    - --hostkey=${{ inputs.hostkey }}
+    - --userkey=${{ inputs.userkey }}
+    - --command=${{ inputs.command }}
