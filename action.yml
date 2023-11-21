@@ -21,7 +21,7 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: ghcr.io/anttihuokko/ssh-cmd-action:latest
+  image: docker://ghcr.io/anttihuokko/ssh-cmd-action:latest
   args:
     - --user=${{ inputs.user }}
     - --host=${{ inputs.host }}
