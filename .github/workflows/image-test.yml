@@ -8,3 +8,5 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Docker image
         uses: docker://ghcr.io/anttihuokko/ssh-action:latest
+        with:
+          args: Hello Docker
