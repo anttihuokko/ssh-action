@@ -1,0 +1,22 @@
+name: SSH CMD Action
+description: Action to run an single ssh command
+inputs:
+  user:
+    description: Test input 1
+    required: true
+  input2:
+    description: Test input 2
+    required: false
+runs:
+  using: composite
+  steps:
+    - name: Print inputs
+      uses: docker://ghcr.io/anttihuokko/ssh-action:latest
+      with:
+        args: >-
+          --user="deploy"
+          --host="anhu.ddns.net"
+          --port="221"
+          --hostkey="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGUQJw//0pUlU00FTIQ5ailGptgh4813IseZRqjoufO2"
+          --userkey="${{secrets.SSH_PRIVATE_KEY}}"
+          --command="uptime"
